@@ -1,7 +1,7 @@
 spring:
   config:
     activate:
-      on-profile: dev
+      on-profile: prod
   datasource:
     url: jdbc:mysql://mysql:3306/ClockIn?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
     username: root
