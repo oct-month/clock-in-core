@@ -4,3 +4,13 @@ spring:
   profiles:
     # active: ${config}
     active: dev
+
+logging:
+  level:
+    root: debug
+  pattern:
+    console: "%black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%throwable"
+
+qr-code:
+  in: iVBORw0KGgoAAAANSUhEUgAAAxYAAAN7CAYAAADY1AwjAAAAAXNSR0IA
+  out: rs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQA
