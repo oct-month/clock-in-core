@@ -14,5 +14,11 @@ spring:
       ddl-auto: update
     show-sql: true
 
+logging:
+  level:
+    root: debug
+  pattern:
+    console: "%black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%throwable"
+
 server:
   port: 8080
