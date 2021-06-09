@@ -34,7 +34,7 @@ public class UserController
         if (!inUser.isPresent())
         {
             dao.saveAndFlush(user);
-            return new BaseResponse("success");
+            return new BaseResponse("success", "Register Successful");
         }
         return new BaseResponse("fail", "User Has Been Registered yet");
     }
@@ -45,7 +45,7 @@ public class UserController
         Optional<ClockUser> inUser = dao.findById(user.getSchoolCode());
         if (inUser.isPresent())
         {
-            return new BaseResponse("success");
+            return new BaseResponse("success", "Login Successful");
         }
         return new BaseResponse("fail", "User Has not Registered yet");
     }

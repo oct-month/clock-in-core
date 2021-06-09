@@ -51,7 +51,7 @@ public class RecordController
                 return new BaseResponse("fail", "Token Error.");
             }
             dao.saveAndFlush(record);
-            return new BaseResponse("success");
+            return new BaseResponse("success", "Clock " + record.getAction());
         }
         return new BaseResponse("fail", "Token Error.");
     }
