@@ -5,31 +5,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * @Description TODO
  * @Author sun
- * @Date 2021/6/5 22:14
+ * @Date 2021/6/16 15:24
  */
 
 @Entity
+@Table(name = "copy_writing")
 @Data
 @NoArgsConstructor
 @JsonAutoDetect(fieldVisibility=JsonAutoDetect.Visibility.ANY, getterVisibility=JsonAutoDetect.Visibility.NONE)
-public class ClockRecord
+public class CopyWriting
 {
+    // id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    // 时间
-    private Date date;
+    // 文案
+    private String content;
 
-    // 动作（进入/离开）
-    private String action;
-
-    @ManyToOne(targetEntity = ClockUser.class)
-    @JoinColumn(name = "school_code")
-    private ClockUser user;
+    public CopyWriting(String content)
+    {
+        this.content = content;
+    }
 }

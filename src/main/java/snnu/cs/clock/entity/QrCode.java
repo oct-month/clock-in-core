@@ -5,31 +5,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
-
-/**
- * @Description TODO
- * @Author sun
- * @Date 2021/6/5 22:14
- */
 
 @Entity
+@Table(name = "qr_code")
 @Data
 @NoArgsConstructor
 @JsonAutoDetect(fieldVisibility=JsonAutoDetect.Visibility.ANY, getterVisibility=JsonAutoDetect.Visibility.NONE)
-public class ClockRecord
+public class QrCode
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
-    // 时间
-    private Date date;
+    // 打卡进入的码
+    private String inCode;
 
-    // 动作（进入/离开）
-    private String action;
-
-    @ManyToOne(targetEntity = ClockUser.class)
-    @JoinColumn(name = "school_code")
-    private ClockUser user;
+    // 打卡离开的码
+    private String outCode;
 }

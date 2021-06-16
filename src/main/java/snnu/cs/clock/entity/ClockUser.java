@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * @Description TODO
@@ -21,6 +21,7 @@ public class ClockUser
 {
     // 学号
     @Id
+    @Column(name = "school_code")
     private String schoolCode;
 
     // 姓名
@@ -28,4 +29,7 @@ public class ClockUser
 
     // 班级名
     private String className;
+
+    @OneToMany(targetEntity = ClockRecord.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ClockRecord> records;
 }
