@@ -2,8 +2,8 @@ spring:
   config:
     name: application
   profiles:
-    # active: ${config}
-    active: dev
+    active: ${config}
+    # active: dev
 
 qr-code:
   in: iVBORw0KGgoAAAANSUhEUgAAAxYAAAN7CAYAAADY1AwjAAAAAXNSR0IA

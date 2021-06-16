@@ -10,6 +10,6 @@ import snnu.cs.clock.entity.QrCode;
 @Transactional
 public interface QrCodeDao extends JpaRepository<QrCode, Long>
 {
-    @Query("select * from `qr_code` order by `id` desc limit 1")
+    @Query(value = "select * from `qr_code` order by `id` desc limit 1", nativeQuery = true)
     QrCode getNewest();
 }

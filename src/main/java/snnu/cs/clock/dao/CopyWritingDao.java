@@ -10,6 +10,6 @@ import snnu.cs.clock.entity.CopyWriting;
 @Transactional
 public interface CopyWritingDao extends JpaRepository<CopyWriting, Long>
 {
-    @Query("select * from copy_writing order by RAND() limit 1")
+    @Query(value = "select * from copy_writing order by RAND() limit 1", nativeQuery = true)
     CopyWriting getRandomOne();
 }
