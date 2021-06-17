@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import snnu.cs.clock.dao.CopyWritingDao;
 import snnu.cs.clock.dao.RecordDao;
+import snnu.cs.clock.dao.UserDao;
 import snnu.cs.clock.entity.ClockRecord;
+import snnu.cs.clock.entity.ClockUser;
 import snnu.cs.clock.entity.CopyWriting;
 import snnu.cs.clock.response.BaseResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * @Description TODO
@@ -28,6 +31,8 @@ public class RecordController
 {
     @Autowired
     private RecordDao recordDao;
+    @Autowired
+    private UserDao userDao;
     @Autowired
     private CopyWritingDao copyWritingDao;
     @Value("${qr-code.in}")
@@ -54,12 +59,18 @@ public class RecordController
             {
                 return new BaseResponse("fail", "Token Error.");
             }
-            recordDao.saveAndFlush(record);
-            CopyWriting cw = copyWritingDao.getRandomOne();
-            String copyWriting = "";
-            if (cw != null)
-                copyWriting = cw.getContent();
-            return new BaseResponse("!!Clock " + record.getAction() + "!!", copyWriting);
+            Optional<ClockUser> oUser = userDao.findById(record.getSchoolCode());
+            if (oUser.isPresent())
+            {
+                record.setUser(oUser.get());
+                recordDao.saveAndFlush(record);
+                CopyWriting cw = copyWritingDao.getRandomOne();
+                String copyWriting = "";
+                if (cw != null)
+                    copyWriting = cw.getContent();
+                return new BaseResponse("!! Clock " + record.getAction() + " !!", copyWriting);
+            }
+            return new BaseResponse("fail", "The user has not registered yet");
         }
         return new BaseResponse("fail", "Token Error.");
     }

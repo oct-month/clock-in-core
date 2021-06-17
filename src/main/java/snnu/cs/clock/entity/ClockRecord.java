@@ -1,6 +1,7 @@
 package snnu.cs.clock.entity;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,6 +29,9 @@ public class ClockRecord
 
     // 动作（进入/离开）
     private String action;
+
+    @Transient
+    private String schoolCode;
 
     @ManyToOne(targetEntity = ClockUser.class)
     @JoinColumn(name = "school_code")
