@@ -59,7 +59,7 @@ public class RecordController
             String copyWriting = "";
             if (cw != null)
                 copyWriting = cw.getContent();
-            return new BaseResponse("success", "!!!Clock " + record.getAction() + "!!!\n" + copyWriting);
+            return new BaseResponse("!!Clock " + record.getAction() + "!!", copyWriting);
         }
         return new BaseResponse("fail", "Token Error.");
     }
